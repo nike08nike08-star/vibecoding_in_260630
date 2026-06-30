@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>명언 생성기</title>
+    <meta
+      name="description"
+      content="랜덤 명언을 보여주고, 복사/공유/추가 저장까지 가능한 간단한 명언 생성 웹페이지"
+    />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">본문으로 바로가기</a>
+
+    <header class="site-header">
+      <div class="container">
+        <div class="header-row">
+          <div>
+            <h1 class="title">명언 생성기</h1>
+            <p class="subtitle">버튼을 눌러 오늘의 한 문장을 만나보세요.</p>
+          </div>
+          <button
+            id="themeToggle"
+            class="btn theme-btn"
+            type="button"
+            aria-pressed="false"
+            aria-label="테마 전환 (라이트/다크)"
+            title="테마 전환"
+          >
+            테마: 시스템
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="container">
+      <section class="card" aria-labelledby="quote-heading">
+        <h2 id="quote-heading" class="sr-only">현재 명언</h2>
+
+        <figure class="quote">
+          <blockquote id="quoteText" class="quote-text" aria-live="polite"></blockquote>
+          <figcaption id="quoteAuthor" class="quote-author"></figcaption>
+        </figure>
+
+        <div class="actions" role="group" aria-label="명언 동작">
+          <button id="nextBtn" class="btn btn-primary" type="button">
+            다음 명언
+          </button>
+          <button id="copyBtn" class="btn" type="button">클립보드 복사</button>
+          <button id="shareBtn" class="btn" type="button">공유</button>
+          <a
+            id="askBtn"
+            class="btn btn-link"
+            href="#"
+            target="_blank"
+            rel="noreferrer noopener"
+            >ChatGPT에게 묻기</a
+          >
+        </div>
+
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="card" aria-labelledby="add-heading">
+        <h2 id="add-heading" class="card-title">내 명언 추가</h2>
+        <form id="addForm" class="form">
+          <div class="field">
+            <label for="newQuote">문구</label>
+            <textarea
+              id="newQuote"
+              name="newQuote"
+              rows="3"
+              required
+              maxlength="240"
+              placeholder="예: 지금 이 순간이 가장 소중하다."
+            ></textarea>
+            <p class="hint" id="quoteHint">최대 240자</p>
+          </div>
+
+          <div class="field">
+            <label for="newAuthor">저자 (선택)</label>
+            <input
+              id="newAuthor"
+              name="newAuthor"
+              type="text"
+              maxlength="60"
+              placeholder="예: 홍길동"
+              autocomplete="name"
+            />
+          </div>
+
+          <div class="actions">
+            <button id="addBtn" class="btn btn-primary" type="submit">저장</button>
+            <button id="clearBtn" class="btn" type="button">입력 지우기</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card" aria-labelledby="mine-heading">
+        <div class="card-head">
+          <h2 id="mine-heading" class="card-title">내가 추가한 명언</h2>
+          <p class="small" id="mineCount"></p>
+        </div>
+
+        <ul id="mineList" class="list" aria-label="내 명언 목록"></ul>
+        <p id="mineEmpty" class="small muted">아직 저장한 명언이 없어요.</p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p class="small muted">
+          @2026 오늘의 명언. Made with Leegil&Cusor
+        </p>
+      </div>
+    </footer>
+
+    <script defer src="./app.js"></script>
+  </body>
+</html>
